@@ -1,15 +1,47 @@
-Gemini Model Periodic Table
+# Gemini Model Periodic Table
 
-A Tampermonkey userscript that replaces Gemini's model picker with a periodic table. H is Hydrogen, C is Carbon, Ne is Neon, and Ar is Argon, all Gemini 4 models.
+A [Tampermonkey](https://www.tampermonkey.net/) userscript that turns Gemini's model picker into a periodic table.
 
-Locked models and models missing from your account's menu are striped and unclickable. This changes the picker, not your account's access.
+**[Install the userscript](https://raw.githubusercontent.com/koboshchan/gemini-periodic-table/main/gemini-periodic-table.user.js)**
 
-Install [Tampermonkey](https://www.tampermonkey.net/), then open the [userscript install link](https://raw.githubusercontent.com/koboshchan/gemini-periodic-table/main/gemini-periodic-table.user.js) and accept the installation. Reload [Gemini](https://gemini.google.com/) if it's already open.
+Open the usual model picker to choose a Gemini 4 model by its element. Locked models and models missing from your account's menu are striped and unclickable.
 
-Click the usual model picker to open the table, then click an available model. Click outside the table or press Escape to close it. The other elements are placeholders.
+| Element | Model |
+| --- | --- |
+| H | Hydrogen |
+| C | Carbon |
+| Ne | Neon |
+| Ar | Argon |
 
-The script checks Gemini's own menu each time you open the table and clicks the real menu item when you choose a model. It builds the interface with DOM methods rather than HTML strings, so it works with Gemini's Trusted Types restrictions.
+The remaining elements are placeholders.
 
-It relies on Gemini's current DOM, especially the picker button's `data-test-id="bard-mode-menu-button"`. A Gemini update may break it. If the menu can't be read, model selection stays disabled. Model availability depends on your account.
+## Install
 
-Licensed under [MIT](LICENSE).
+1. Install [Tampermonkey](https://www.tampermonkey.net/) in your browser.
+2. Open the [raw userscript link](https://raw.githubusercontent.com/koboshchan/gemini-periodic-table/main/gemini-periodic-table.user.js) and confirm installation in Tampermonkey.
+3. Open or reload [Gemini](https://gemini.google.com/).
+
+The script includes update and download URLs pointing to this repository, so Tampermonkey can pick up new versions when automatic updates are enabled.
+
+## Use
+
+Click Gemini's model picker, then select an available element. Click outside the table, use its close button, or press Escape to dismiss it.
+
+The script checks Gemini's own menu each time you open the table. Choosing an element clicks the corresponding real menu item.
+
+> [!NOTE]
+> This changes the picker, not your account's access. It does not unlock models or bypass subscription restrictions.
+
+## How it works
+
+The interface is built with DOM methods and text nodes rather than HTML strings, avoiding Gemini's Trusted Types restrictions.
+
+There is no build step. The userscript lives in [gemini-periodic-table.user.js](gemini-periodic-table.user.js).
+
+## Limitations
+
+The script depends on Gemini's current DOM and menu labels, including the picker button's `data-test-id="bard-mode-menu-button"`. Changes to Gemini can break the table or availability detection. If the menu cannot be read, model selection stays disabled.
+
+If something breaks, [open an issue](https://github.com/koboshchan/gemini-periodic-table/issues) with what happened and your browser and userscript version.
+
+Released under the [MIT license](LICENSE).
